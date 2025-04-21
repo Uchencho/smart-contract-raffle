@@ -1,0 +1,39 @@
+1. Events: As the name suggests, we are able to publish or emit events from our contract.
+There is a separate way to listen to events, which I will include when I understand it better.
+
+2. External vs Public: External is used outside the contract while public is used both inside and
+outside the contract. Maybe this is why external is more gas efficient than public.
+
+3. For some weird reason, maybe not so weird, generating a random number is incredibly difficult on
+the blockchain. We have to sign up for VRF chain link and pay for it. Then in the code, we need to
+connect to the subscription AND tell the subscription about the contract.
+
+    a. You would need to install the chainlink brownie contract package
+        forge install smartcontractkit/chainlink-brownie-contracts --no-commit
+
+4. To start a new project, forge init
+
+5. When inheriting a contract that has a constructor, you need to "inherit" the constructor as well because you need
+    to initialize the parent contract.
+
+6. The design pattern, CEI, which stands for Checks, Effects, Interactions is important to understand.
+   As the name suggests, it is a way to organize flows where you do your checks ( reverts and conditionals )
+   before you do your effects ( state variable changes and emitting events ) and then you do your interactions
+   ( external calls ). It helps save gas and is the standard currently.
+
+7. For VRF coordinator, go https://docs.chain.link/vrf/v2-5/supported-networks to get the supported networks.
+   This is where you will get the key hash and address for the network you want to work with.
+
+8. To run a test in verbose mode, use the following command:
+    forge test --match-test {{Name of Test}} -vvvv
+
+9. When trying to test emit events, you will see a syntax that looks like:
+    wm.expectEmit(true,false,false,false,address(raffle)).
+    true: first arg is true because the first param in the event is indexed
+    false: second arg is false because the second param in the event is not indexed ( or no second param)
+    false: third arg is false because the third param in the event is not indexed ( or no third param)
+    false: fourth arg is false because there is non indexed param in the event
+    address(raffle): the address of the contract that is emitting the event
+
+10. To create a subscription and a consumer on chainlink, you need to create an account on this website:
+    https://vrf.chain.link/
