@@ -37,3 +37,9 @@ connect to the subscription AND tell the subscription about the contract.
 
 10. To create a subscription and a consumer on chainlink, you need to create an account on this website:
     https://vrf.chain.link/
+
+11. To get the link token mock, go to https://github.com/Cyfrin/foundry-smart-contract-lottery-cu/blob/main/test/mocks/LinkToken.sol
+    To get the solmate package, which is at https://github.com/transmissions11/solmate, 
+        run forge install transmissions11/solmate@v6 --no-commit. Remember to update foundry.toml file
+
+12. To fund an existing subscription from the terminal run make fund-subscription ( remember to set the subscription id on the chain)

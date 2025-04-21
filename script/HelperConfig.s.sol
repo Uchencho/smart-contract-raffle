@@ -3,6 +3,7 @@ pragma solidity 0.8.19;
 
 import {Script} from "forge-std/Script.sol";
 import {VRFCoordinatorV2_5Mock} from "@chainlink/contracts/src/v0.8/vrf/mocks/VRFCoordinatorV2_5Mock.sol";
+import {LinkToken} from "test/mocks/LinkToken.sol";
 
 abstract contract CodeConstants {
     uint256 public constant ETH_SEPOLIA_CHAIN_ID = 11155111;
@@ -80,6 +81,7 @@ contract HelperConfig is Script, CodeConstants {
             MOCK_GAS_PRICE_LINK,
             MOCK_WEI_PER_UINT_LINK
         );
+        LinkToken linkTokenContract = new LinkToken();
         vm.stopBroadcast();
 
         localNetworkConfig = NetworkConfig({
@@ -89,7 +91,7 @@ contract HelperConfig is Script, CodeConstants {
             gasLane: SEPOLIA_KEY_HASH, // doesn't matter
             callbackGasLimit: 500000, // doesn't matter
             subscriptionId: 0,
-            link: address(0)
+            link: address(linkTokenContract)
         });
         return localNetworkConfig;
     }
