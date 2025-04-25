@@ -68,6 +68,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
     // Events
     event RaffleSubscribed(address indexed player, uint256 amount);
     event WinnerPicked(address indexed winner);
+    event RequestedRaffleWinner(uint256 indexed requestId);
 
     constructor(
         uint256 entranceFee,
@@ -153,7 +154,8 @@ contract Raffle is VRFConsumerBaseV2Plus {
                 )
             });
 
-        s_vrfCoordinator.requestRandomWords(request);
+        uint256 requestId = s_vrfCoordinator.requestRandomWords(request);
+        emit RequestedRaffleWinner(requestId); // redundant because the requestRandomWords function emits an event which contains the requestId
     }
 
     function fulfillRandomWords(

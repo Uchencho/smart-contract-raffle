@@ -6,3 +6,6 @@ test:
 
 fund-subscription:
 	forge script script/Interactions.s.sol:FundSubscription --rpc-url $(SEPOLIA_RPC_URL) --account $(KEY_NAME) --broadcast
+
+generate-report:
+	forge coverage --report debug > coverage.txt
