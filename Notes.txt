@@ -43,3 +43,10 @@ connect to the subscription AND tell the subscription about the contract.
         run forge install transmissions11/solmate@v6 --no-commit. Remember to update foundry.toml file
 
 12. To fund an existing subscription from the terminal run make fund-subscription ( remember to set the subscription id on the chain)
+
+13. To install foundry devops for getting the latest deployed contract, go to this url
+    https://github.com/cyfrin/foundry-devops which will give you this command  forge install Cyfrin/foundry-devops --no-commit
+    Update the foundry.toml to include the new fx permissions from the github link
+
+14. Fuzz testing allows us to pass in random inputs into the test and running this test n times by passing in an input 
+    param to the test

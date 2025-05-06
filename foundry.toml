@@ -7,4 +7,14 @@ remappings = [
     "@solmate=lib/solmate/src/",
 ]
 
+fs_permissions = [
+    { access = "read", path = "./broadcast" },
+    { access = "read", path = "./reports" },
+]
+
+[fuzz]
+runs = 256
+
+ignored_error_codes = [5574]  # Contract code size exceeds 24576 bytes
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
