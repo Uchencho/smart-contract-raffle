@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  FOUNDRY_PROFILE: default
+  FOUNDRY_PROFILE: ci
 
 jobs:
   check:
@@ -29,8 +29,7 @@ jobs:
 
       - name: Run Forge build
         run: |
-          forge clean
-          forge build --sizes
+          forge build --sizes --ignored-error-codes 5574
         id: build
 
       - name: Run Forge tests
