@@ -15,7 +15,7 @@ abstract contract CodeConstants {
     uint256 public constant ETH_SEPOLIA_ENTRY_FEE = 0.01 ether;
 
     /* VRF Mock Values*/
-    uint96 public MOCK_BASE_FEE = 0.25 ether;
+    uint96 public MOCK_BASE_FEE = 0.0005 ether;
     uint96 public MOCK_GAS_PRICE_LINK = 1e9;
     int256 public MOCK_WEI_PER_UINT_LINK = 4e15;
 }
@@ -31,6 +31,7 @@ contract HelperConfig is Script, CodeConstants {
         uint256 subscriptionId;
         uint32 callbackGasLimit;
         address link;
+        address account;
     }
 
     NetworkConfig public localNetworkConfig;
@@ -66,7 +67,8 @@ contract HelperConfig is Script, CodeConstants {
                 gasLane: SEPOLIA_KEY_HASH,
                 callbackGasLimit: 500000, // 500,000 gas
                 subscriptionId: 0,
-                link: 0x779877A7B0D9E8603169DdbD7836e478b4624789
+                link: 0x779877A7B0D9E8603169DdbD7836e478b4624789,
+                account: 0x2fef53A901D213c41a82e9f7dFBA867d6c06D253 // dev account
             });
     }
 
@@ -91,7 +93,8 @@ contract HelperConfig is Script, CodeConstants {
             gasLane: SEPOLIA_KEY_HASH, // doesn't matter
             callbackGasLimit: 500000, // doesn't matter
             subscriptionId: 0,
-            link: address(linkTokenContract)
+            link: address(linkTokenContract),
+            account: 0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38
         });
         return localNetworkConfig;
     }
